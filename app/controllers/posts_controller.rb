@@ -5,8 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-
-    render json: @posts
+    render json: @posts, except: :comment
   end
 
   # GET /posts/1
@@ -31,7 +30,6 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
     if @post.update(post_params)
       head :no_content
     else
@@ -43,7 +41,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-
     head :no_content
   end
 
